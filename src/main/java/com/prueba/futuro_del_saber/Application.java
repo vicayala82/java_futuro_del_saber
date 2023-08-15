@@ -12,9 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 public class Application{
 
-    @Autowired
-    private final CourseService courseService;
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
         log.info("Run Application Futuro Del Saber");

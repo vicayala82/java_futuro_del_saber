@@ -2,7 +2,6 @@ package com.prueba.futuro_del_saber.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prueba.futuro_del_saber.dto.GradeDTO;
-import com.prueba.futuro_del_saber.dto.SignatureDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

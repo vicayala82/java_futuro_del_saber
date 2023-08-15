@@ -1,8 +1,6 @@
 package com.prueba.futuro_del_saber.dto;
 
 import com.prueba.futuro_del_saber.entities.GradeEntity;
-import com.prueba.futuro_del_saber.entities.SignatureEntity;
-import com.prueba.futuro_del_saber.entities.StudentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

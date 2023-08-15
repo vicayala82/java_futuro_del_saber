@@ -2,13 +2,11 @@ package com.prueba.futuro_del_saber.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 @Data
-@ToString
 @Entity
 @Table(name = "teacher")
 public class TeacherEntity {

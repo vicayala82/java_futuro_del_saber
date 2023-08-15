@@ -1,8 +1,6 @@
 package com.prueba.futuro_del_saber.dto;
 
 import com.prueba.futuro_del_saber.entities.AddressEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

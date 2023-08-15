@@ -1,15 +1,8 @@
 package com.prueba.futuro_del_saber.dto;
 
-import com.prueba.futuro_del_saber.entities.CourseEntity;
-import com.prueba.futuro_del_saber.entities.GradeEntity;
 import com.prueba.futuro_del_saber.entities.SignatureEntity;
-import com.prueba.futuro_del_saber.entities.StudentEntity;
-import com.prueba.futuro_del_saber.entities.TeacherEntity;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Data
 @Builder

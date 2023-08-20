@@ -10,12 +10,20 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "course")
 public class CourseEntity {
 
@@ -31,8 +39,8 @@ public class CourseEntity {
     private TeacherEntity courseDirector;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "COURSE_SIGNATURE",
-            joinColumns = @JoinColumn(name = "COURSE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "SIGNATURE_ID"))
+    @JoinTable(name = "course_signature",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "signature_id"))
     private Set<SignatureEntity> signatures;
 }

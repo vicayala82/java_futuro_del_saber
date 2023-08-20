@@ -1,0 +1,308 @@
+@startuml
+class com.prueba.futuro_del_saber.exceptions.SignatureNotFoundException {
+}
+class com.prueba.futuro_del_saber.entities.SignatureEntity {
+- Long id
+- String name
+- TeacherEntity teacher
+- Set<StudentEntity> students
+- Set<GradeEntity> grades
+- Set<CourseEntity> courses
+}
+class com.prueba.futuro_del_saber.dto.TeacherDTO {
+- Long id
+- String documentType
+- String name
+- String lastName
+- LocalDate birthday
+- String email
+- String phoneNumber
+- String cellNumber
+- String lastGrade
++ {static} TeacherDTO convertDTO(TeacherEntity)
++ {static} TeacherEntity convertToEntity(TeacherDTO)
+}
+class com.prueba.futuro_del_saber.entities.TeacherEntity {
+- Long id
+- String documentType
+- String name
+- String lastName
+- LocalDate birthday
+- String email
+- String phoneNumber
+- String cellNumber
+- String lastGrade
+- CourseEntity courseAssigned
+- Set<SignatureEntity> signatures
+}
+interface com.prueba.futuro_del_saber.repositories.GradeRepository {
+}
+class com.prueba.futuro_del_saber.exceptions.AplicationException {
+- String code
+- String description
+- Integer statusCode
+}
+class com.prueba.futuro_del_saber.entities.StudentEntity {
+- Long id
+- String documentType
+- String name
+- String lastName
+- LocalDate birthday
+- String email
+- String phoneNumber
+- String cellNumber
+- String custodianName
+- AddressEntity address
+- CourseEntity course
+- Set<SignatureEntity> signatures
+- Set<GradeEntity> grades
+}
+class com.prueba.futuro_del_saber.services.CourseServiceImpl {
+- CourseRepository courseRepository
+- SignatureRepository signatureRepository
++ CourseDTO create(CourseDTO)
++ CourseDTO get(Long)
++ List<CourseDTO> getAll()
++ CourseDTO update(CourseDTO,Long)
++ void delete(Long)
++ void addSignature(CourseDTO,SignatureDTO)
++ void removeSignature(CourseDTO,SignatureDTO)
+}
+class com.prueba.futuro_del_saber.exceptions.GradeNotFoundException {
+}
+class com.prueba.futuro_del_saber.exceptions.TeacherNotFoundException {
+}
+class com.prueba.futuro_del_saber.entities.CourseEntity {
+- Long id
+- String levelCourse
+- TeacherEntity courseDirector
+- Set<SignatureEntity> signatures
+}
+class com.prueba.futuro_del_saber.dto.AddressDTO {
+- Long id
+- String city
+- String address
++ {static} AddressDTO convertToDTO(AddressEntity)
++ {static} AddressEntity convertToEntity(AddressDTO)
+}
+class com.prueba.futuro_del_saber.controllers.StudentController {
+- StudentServiceImpl studentService
++ ResponseEntity<List<StudentDTO>> findAll()
++ ResponseEntity<StudentDTO> getById(Long)
++ ResponseEntity<StudentDTO> create(StudentDTO)
++ ResponseEntity<StudentDTO> update(StudentDTO,Long)
++ ResponseEntity<Void> delete(Long)
+}
+interface com.prueba.futuro_del_saber.repositories.SignatureRepository {
+}
+class com.prueba.futuro_del_saber.entities.GradeEntity {
+- Long id
+- double value
+- SignatureEntity signature
+- StudentEntity student
+}
+class com.prueba.futuro_del_saber.services.StudentServiceImpl {
+- StudentRepository studentRepository
++ StudentDTO create(StudentDTO)
++ StudentDTO get(Long)
++ List<StudentDTO> getAll()
++ StudentDTO update(StudentDTO,Long)
++ void delete(Long)
+}
+class com.prueba.futuro_del_saber.exceptions.StudentNotFoundException {
+}
+class com.prueba.futuro_del_saber.exceptions.SignatureAlreadyOwnedException {
+}
+class com.prueba.futuro_del_saber.services.SignatureServiceImpl {
+- SignatureRepository signatureRepository
+- TeacherRepository teacherRepository
++ SignatureDTO create(SignatureDTO)
++ SignatureDTO get(Long)
++ List<SignatureDTO> getAll()
++ SignatureDTO update(SignatureDTO,Long)
++ void delete(Long)
+}
+class com.prueba.futuro_del_saber.Application {
++ {static} void main(String[])
+}
+class com.prueba.futuro_del_saber.vo.BestStudentPerCourseVO {
+- String courseDirector
+- String courseName
+- double courseAverage
+- String student
+- Set<SignatureVO> gradesSignatures
+- double studentAverage
+}
+class com.prueba.futuro_del_saber.controllers.TeacherController {
+~ TeacherServiceImpl teacherService
++ ResponseEntity<List<TeacherDTO>> findAll()
++ ResponseEntity<TeacherDTO> getById(Long)
++ ResponseEntity<TeacherDTO> create(TeacherDTO)
++ ResponseEntity<TeacherDTO> update(TeacherDTO,Long)
++ ResponseEntity<Void> delete(Long)
+}
+class com.prueba.futuro_del_saber.dto.SignatureDTO {
+- Long id
+- String name
+- TeacherDTO teacher
++ {static} SignatureDTO convertToDTO(SignatureEntity)
++ {static} SignatureEntity convertToEntity(SignatureDTO)
+}
+class com.prueba.futuro_del_saber.controllers.SignatureController {
+- SignatureServiceImpl signatureService
++ ResponseEntity<List<SignatureDTO>> findAll()
++ ResponseEntity<SignatureDTO> getById(Long)
++ ResponseEntity<SignatureDTO> create(SignatureDTO)
++ ResponseEntity<SignatureDTO> update(SignatureDTO,Long)
++ ResponseEntity<Void> delete(Long)
+}
+class com.prueba.futuro_del_saber.dto.StudentDTO {
+- Long id
+- String documentType
+- String name
+- String lastName
+- LocalDate birthday
+- String email
+- String phoneNumber
+- String cellNumber
+- String custodianName
+- AddressDTO address
+- CourseDTO course
+- Set<SignatureDTO> signatures
+- Set<GradeDTO> grades
++ {static} StudentDTO convertToDTO(StudentEntity)
++ {static} StudentEntity convertToEntity(StudentDTO)
+}
+class com.prueba.futuro_del_saber.vo.SignatureVO {
+- String teacher
+- String signatureName
+- double grade
++ {static} SignatureVO convertToVO(GradeDTO)
+}
+class com.prueba.futuro_del_saber.controllers.GradeController {
+- GradesServiceImpl gradesService
++ ResponseEntity<List<GradeDTO>> findAll()
++ ResponseEntity<GradeDTO> getById(Long)
++ ResponseEntity<GradeDTO> create(GradeDTO)
++ ResponseEntity<GradeDTO> update(GradeDTO,Long)
++ ResponseEntity<Void> delete(Long)
+}
+class com.prueba.futuro_del_saber.services.TeacherServiceImpl {
+- TeacherRepository teacherRepository
++ TeacherDTO create(TeacherDTO)
++ TeacherDTO get(Long)
++ List<TeacherDTO> getAll()
++ TeacherDTO update(TeacherDTO,Long)
++ void delete(Long)
+}
+class com.prueba.futuro_del_saber.exceptions.CourseNotFoundException {
+}
+class com.prueba.futuro_del_saber.vo.OverAverageStudentResponseVO {
+- String teacher
+- String course
+- Set<SignatureVO> signatures
+- double average
+- String studentName
+- double grade
+}
+class com.prueba.futuro_del_saber.dto.CourseDTO {
+- Long id
+- String levelCourse
+- TeacherDTO courseDirector
+- Set<SignatureDTO> signatures
++ {static} CourseDTO convertToDTO(CourseEntity)
++ {static} CourseEntity convertToEntity(CourseDTO)
++ void addSignature(SignatureDTO)
++ void removeSignature(SignatureDTO)
+}
+class com.prueba.futuro_del_saber.controllers.ReportController {
+- ReportService reportService
++ ResponseEntity<Set<OverAverageStudentResponseVO>> queryOverAverageStudent(String)
++ ResponseEntity<Set<BestStudentPerCourseVO>> bestStudentPerCourse(String)
+}
+interface com.prueba.futuro_del_saber.repositories.TeacherRepository {
+}
+class com.prueba.futuro_del_saber.services.GradesServiceImpl {
+- GradeRepository gradeRepository
+- StudentRepository studentRepository
+- SignatureRepository signatureRepository
++ GradeDTO create(GradeDTO)
++ GradeDTO get(Long)
++ List<GradeDTO> getAll()
++ GradeDTO update(GradeDTO,Long)
++ void delete(Long)
+}
+class com.prueba.futuro_del_saber.controllers.CourseController {
+- CourseServiceImpl courseService
++ ResponseEntity<List<CourseDTO>> findAll()
++ ResponseEntity<CourseDTO> getById(Long)
++ ResponseEntity<CourseDTO> create(CourseDTO)
++ ResponseEntity<CourseDTO> update(CourseDTO,Long)
++ ResponseEntity<Void> delete(Long)
+}
+interface com.prueba.futuro_del_saber.services.interfaces.ICrudInterface {
+~ DTOType create(DTOType)
+~ DTOType get(ID)
+~ List<DTOType> getAll()
+~ DTOType update(DTOType,ID)
+~ void delete(ID)
+}
+class com.prueba.futuro_del_saber.services.ReportService {
+- StudentRepository studentRepository
+- TeacherRepository teacherRepository
+- SignatureRepository signatureRepository
+- GradeRepository gradeRepository
+- CourseRepository courseRepository
++ Set<OverAverageStudentResponseVO> overAverageStudentsPerCourse(String)
++ Set<BestStudentPerCourseVO> bestStudentPerCourse(String)
+}
+class com.prueba.futuro_del_saber.dto.GradeDTO {
+- Long id
+- double value
+- SignatureDTO signature
+- StudentDTO student
++ {static} GradeDTO convertToDTO(GradeEntity)
++ {static} GradeEntity convertToEntity(GradeDTO)
+}
+class com.prueba.futuro_del_saber.Constants.ServiceConstants {
++ {static} String NOT_FOUND_TEACHER
++ {static} String NOT_FOUND_STUDENT
++ {static} String NOT_FOUND_COURSE
++ {static} String NOT_FOUND_SIGNATURE
++ {static} String NOT_FOUND_GRADE
++ {static} String SIGNATURE_ALREADY_OWNED
+}
+interface com.prueba.futuro_del_saber.repositories.CourseRepository {
+~ CourseEntity findByLevelCourse(String)
+}
+interface com.prueba.futuro_del_saber.repositories.AddressRepository {
+}
+interface com.prueba.futuro_del_saber.repositories.StudentRepository {
+~ Set<StudentEntity> findByCourseId(Long)
+}
+class com.prueba.futuro_del_saber.entities.AddressEntity {
+- Long id
+- String city
+- String address
+}
+
+
+com.prueba.futuro_del_saber.exceptions.AplicationException <|-- com.prueba.futuro_del_saber.exceptions.SignatureNotFoundException
+org.springframework.data.jpa.repository.JpaRepository <|-- com.prueba.futuro_del_saber.repositories.GradeRepository
+com.prueba.futuro_del_saber.exceptions.RuntimeException <|-- com.prueba.futuro_del_saber.exceptions.AplicationException
+com.prueba.futuro_del_saber.services.interfaces.ICrudInterface <|.. com.prueba.futuro_del_saber.services.CourseServiceImpl
+com.prueba.futuro_del_saber.exceptions.AplicationException <|-- com.prueba.futuro_del_saber.exceptions.GradeNotFoundException
+com.prueba.futuro_del_saber.exceptions.AplicationException <|-- com.prueba.futuro_del_saber.exceptions.TeacherNotFoundException
+org.springframework.data.jpa.repository.JpaRepository <|-- com.prueba.futuro_del_saber.repositories.SignatureRepository
+com.prueba.futuro_del_saber.services.interfaces.ICrudInterface <|.. com.prueba.futuro_del_saber.services.StudentServiceImpl
+com.prueba.futuro_del_saber.exceptions.AplicationException <|-- com.prueba.futuro_del_saber.exceptions.StudentNotFoundException
+com.prueba.futuro_del_saber.exceptions.AplicationException <|-- com.prueba.futuro_del_saber.exceptions.SignatureAlreadyOwnedException
+com.prueba.futuro_del_saber.services.interfaces.ICrudInterface <|.. com.prueba.futuro_del_saber.services.SignatureServiceImpl
+com.prueba.futuro_del_saber.services.interfaces.ICrudInterface <|.. com.prueba.futuro_del_saber.services.TeacherServiceImpl
+com.prueba.futuro_del_saber.exceptions.AplicationException <|-- com.prueba.futuro_del_saber.exceptions.CourseNotFoundException
+org.springframework.data.jpa.repository.JpaRepository <|-- com.prueba.futuro_del_saber.repositories.TeacherRepository
+com.prueba.futuro_del_saber.services.interfaces.ICrudInterface <|.. com.prueba.futuro_del_saber.services.GradesServiceImpl
+org.springframework.data.jpa.repository.JpaRepository <|-- com.prueba.futuro_del_saber.repositories.CourseRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.prueba.futuro_del_saber.repositories.AddressRepository
+org.springframework.data.jpa.repository.JpaRepository <|-- com.prueba.futuro_del_saber.repositories.StudentRepository
+@enduml

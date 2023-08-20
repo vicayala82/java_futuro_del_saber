@@ -22,4 +22,12 @@ public class AddressDTO {
                 .address(addressEntity.getAddress())
                 .build();
     }
+
+    public static AddressEntity convertToEntity(AddressDTO addressDTO) {
+        return AddressEntity.builder()
+                .id(addressDTO.getId())
+                .city(addressDTO.getCity())
+                .address(addressDTO.getAddress())
+                .build();
+    }
 }

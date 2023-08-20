@@ -19,4 +19,11 @@ public class SignatureDTO {
                 .teacher(TeacherDTO.convertDTO(signatureEntity.getTeacher()))
                 .build();
     }
+    public static SignatureEntity convertToEntity (SignatureDTO signatureDTO){
+        return SignatureEntity.builder()
+                .id(signatureDTO.getId())
+                .name(signatureDTO.getName())
+                .teacher(TeacherDTO.convertToEntity(signatureDTO.getTeacher()))
+                .build();
+    }
 }

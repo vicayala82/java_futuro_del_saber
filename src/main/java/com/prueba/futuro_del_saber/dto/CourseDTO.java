@@ -1,6 +1,8 @@
 package com.prueba.futuro_del_saber.dto;
 
 import com.prueba.futuro_del_saber.entities.CourseEntity;
+import com.prueba.futuro_del_saber.exceptions.SignatureAlreadyOwnedException;
+import com.prueba.futuro_del_saber.exceptions.SignatureNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,5 +31,30 @@ public class CourseDTO {
                         .collect(Collectors.toSet())
                 )
                 .build();
+    }
+
+    public static CourseEntity convertToEntity(CourseDTO courseDTO){
+        return CourseEntity.builder()
+                .id(courseDTO.getId())
+                .levelCourse(courseDTO.getLevelCourse())
+                .courseDirector(TeacherDTO.convertToEntity(courseDTO.getCourseDirector()))
+                .signatures(courseDTO.getSignatures().stream()
+                        .map(SignatureDTO::convertToEntity)
+                        .collect(Collectors.toSet())
+                )
+                .build();
+    }
+
+    public void addSignature(SignatureDTO signatureDTO) {
+        if(this.getSignatures().contains(signatureDTO)){
+            throw new SignatureAlreadyOwnedException();
+        }
+        this.getSignatures().add(signatureDTO);
+    }
+    public void removeSignature(SignatureDTO signatureDTO) {
+        if(this.getSignatures().contains(signatureDTO)){
+            this.getSignatures().remove(signatureDTO);
+        }
+        throw new SignatureNotFoundException();
     }
 }

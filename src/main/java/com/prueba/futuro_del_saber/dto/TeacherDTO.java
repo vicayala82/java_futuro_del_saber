@@ -37,5 +37,19 @@ public class TeacherDTO{
                 .build();
     }
 
+    public static TeacherEntity convertToEntity(TeacherDTO teacherDTO){
+        return TeacherEntity.builder()
+                .id(teacherDTO.getId())
+                .documentType(teacherDTO.getDocumentType())
+                .name(teacherDTO.getName())
+                .lastName(teacherDTO.getLastName())
+                .birthday(teacherDTO.getBirthday())
+                .email(teacherDTO.getEmail())
+                .phoneNumber(teacherDTO.getPhoneNumber())
+                .cellNumber(teacherDTO.getCellNumber())
+                .lastGrade(teacherDTO.getLastGrade())
+                .build();
+    }
+
 
 }

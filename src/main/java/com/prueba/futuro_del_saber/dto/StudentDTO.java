@@ -52,4 +52,27 @@ public class StudentDTO {
                 )
                 .build();
     }
+
+    public static StudentEntity convertToEntity(StudentDTO studentEntity) {
+        return StudentEntity.builder()
+                .id(studentEntity.getId())
+                .documentType(studentEntity.getDocumentType())
+                .name(studentEntity.getName())
+                .lastName(studentEntity.getLastName())
+                .birthday(studentEntity.getBirthday())
+                .email(studentEntity.getEmail())
+                .phoneNumber(studentEntity.getPhoneNumber())
+                .cellNumber(studentEntity.getCellNumber())
+                .custodianName(studentEntity.getCustodianName())
+                .address(AddressDTO.convertToEntity(studentEntity.getAddress()))
+                .signatures(studentEntity.getSignatures().stream()
+                        .map(SignatureDTO::convertToEntity)
+                        .collect(Collectors.toSet())
+                )
+                .grades(studentEntity.getGrades().stream()
+                        .map(GradeDTO::convertToEntity)
+                        .collect(Collectors.toSet())
+                )
+                .build();
+    }
 }

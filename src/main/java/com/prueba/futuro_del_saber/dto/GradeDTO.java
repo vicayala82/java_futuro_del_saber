@@ -24,4 +24,12 @@ public class GradeDTO {
                 .signature(SignatureDTO.convertToDTO(gradeEntity.getSignature()))
                 .build();
     }
+
+    public static GradeEntity convertToEntity(GradeDTO gradeDTO) {
+        return GradeEntity.builder()
+                .id(gradeDTO.getId())
+                .value(gradeDTO.getValue())
+                .signature(SignatureDTO.convertToEntity(gradeDTO.getSignature()))
+                .build();
+    }
 }

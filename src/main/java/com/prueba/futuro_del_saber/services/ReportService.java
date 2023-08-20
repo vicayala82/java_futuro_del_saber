@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class CourseService {
+public class ReportService {
 
     @Autowired
     private final StudentRepository studentRepository;
